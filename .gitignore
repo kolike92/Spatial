@@ -1,7 +1,10 @@
 _site/
+_site/*
 *~
 notes.txt
 example.md
 _/drafts/
 node_modules/
 bower_components/
+public/lib
+.config*
