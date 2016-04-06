@@ -1,0 +1,19 @@
+{
+    "title" : "AnEvent",                     // string title
+    "description" : "Things are happening",  // string description
+    "address" : "1 A Street",                // string address
+    "venue" : "A place",                     // string venue title
+    "city" : "Somewhere City",               // string city name
+    "region" : "Massachusetts",              // string region name
+    "rc" : "MA",                             // string region code
+    "country" : "United States",             // string country name
+    "cc" : "US",                             // string country code
+    "postal" : "02215",                      // number postal code
+    "latitude" : "11.11",                    // number latitude of location
+    "longitude" : "22.22",                   // number longitude of location
+    "start" : "April 6th, 2016 10:00",       // start time (exact format undecided/ pending reading best practices)
+    "stop" : "April 6th, 2016 13:30",        // stop time
+    "created" : "",                          // number time put into database
+    "timezone" : "",                         // string local timezone for event
+    "url" : "thisevent.com"                  // string url to event's website
+}
