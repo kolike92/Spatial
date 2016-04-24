@@ -6,7 +6,7 @@ var mongoose    = require('mongoose');
 var UserSchema = require('../models/user')
 
 /* POST */
-router.post('/users', function(req, res, next) {
+router.post('/', function(req, res, next) {
     SpatialUser = new UserSchema(
       req.body
     );
@@ -17,7 +17,7 @@ router.post('/users', function(req, res, next) {
 });
 
 /* GET */
-router.get('/users', function(req, res, next) {
+router.get('/', function(req, res, next) {
     UserSchema.find({}, function(err, results) {
         res.json(results);
     })

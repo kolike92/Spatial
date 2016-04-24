@@ -1,20 +1,25 @@
 extends layout
-
 block content
-    //- form
-    //-     div.form_sub
-    //-         div.form_section
-    //-             span Where are you?
-    //-             button &#8594;
-    //-             textarea(type="text", placeholder="Buswell St. Boston, MA")
     div#content()
-    //- div#footer &copy;SpatialApp
+        form(ng-class="{'showsearch' : searchactive}")
+            input#search(ng-model="form" maxlength="26")
+            span I'm looking for 
+            span.temp {{form}}
+            span.blinking-cursor |
     script(type='text/javascript').
+        //- init map
         mapboxgl.accessToken = "pk.eyJ1IjoiYXNtYWxsZGV2IiwiYSI6ImNpbTVka3hoaTAxbWR1am0zdGZrcjdmdngifQ.YCEnTS1Xao-M8wt-zIJ75A"
         var map = new mapboxgl.Map({
             container: 'content',
             style: 'mapbox://styles/mapbox/streets-v8',
-            center: [-71.10, 42.34],
-            minZoom: 12,
-            zoom: 13
+            center: [-98, 39],
+            minZoom: 4,
+            zoom: 4
         });
+        
+        //- always focus search
+        var search = document.getElementById('search');
+        search.focus();
+        search.onblur = function () {
+                search.focus();
+        };

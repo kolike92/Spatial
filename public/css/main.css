@@ -54,57 +54,71 @@ h1 {
 	list-style: none;
 }
 
-#logo_wrapper {
+#menu_wrapper {
 	border-radius: 8px;
 	float: left;
 	position: relative;
 	margin-left: 1.2em;
 }
 
-#logo {
+#menu {
 	height: 40px;
 	position: relative;
 	display: block;
-        padding-top: 1em;
+    padding-top: 1em;
 }
 
 #side_bar {
-	position: fixed;
+	position: relative;
+	margin-left: -10em;
 	padding-top: 4em;
 	float: left;
 	width:10em;
 	height: 100%;
 	overflow: visible;
-	z-index: 10;
-        display: none;
+	z-index: 5;
+	background-color: white;
+	transition-property: margin;
+	transition-duration: .5s;
 }
 
-.side_box {
-	border: 1px solid #BBB;
+.side_box
+{
 	text-align: center;
 	vertical-align: middle;
 }
 
-.side_box a {
+.side_box a
+{
 	height: 1em;
 	width: 100%;
 	display: inline-block;
-	padding: 1em 0 1em 0;
-	background-color: rgba(255, 255, 255, 0.75);
+	padding: 2em 0 2em 0;
 	transition: background-color .5s ease;
+}
+
+.side_box img
+{
+}
+
+.side_box span
+{
+	padding: 1em;
 }
 
 .side_box a:hover {
 	background-color: rgba(190, 190, 190, 0.75);
 }
 
+.shownav
+{
+	margin-left: 0!important;
+}
+
 #content {
 	margin: 0px;
 	position: relative;
-	/*z-index: -10;*/
-        height: 100%;
-	/*background: url(https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=5af0e68c41241379a320d9832b7232ce.jpg);*/
-	background-size: cover;
+	height: 100%;
 }
 
 #banner {
@@ -138,26 +152,39 @@ h1 {
 	padding: .5em 0em .5em 0em;
 }
 
-div#footer {
-	color: #555;
-	float: right;
-	display: block;
-	padding: 10px;
-	margin-top: -2.3em;
-	background-color: rgba(255, 255, 255, 0.50);
-}
-
-/*TESTING*/
-
 form
 {
-	display: block;
 	position: absolute;
+	font-size: 3.3em;
+	text-align: center;
+	padding: .8em;
+	min-width: 10em;
+	max-width: 20em;
+	z-index: -1;
+	opacity: 0;
 	top: 54%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-        background-color: rgba(255,255,255,.75);
-        animation: fadein 3s;
+    background-color: rgba(255,255,255,.75);
+    transition-property: opacity;
+	transition-duration: 3s;
+}
+
+#search
+{
+	width: 0;
+	opacity: 0;
+}
+
+.showsearch
+{
+	z-index: 10;
+	opacity: 1;
+}
+
+.temp
+{
+	opacity: .80;
 }
 
 @keyframes fadein {
@@ -167,67 +194,6 @@ form
     to {
         opacity:1;
     }
-}
-
-.form_section
-{
-	width: 38em;
-	margin-left: auto;
-	margin-right: auto;
-	padding-right: 3em;
-	padding-left: 3em;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	text-align: left;
-	transition-property: min-height, width;
-	transition-duration: .35s;
-}
-
-.form_sub
-{
-	width: 100%;
-	padding-top: .5em;
-	padding-bottom: .5em;
-	display: inline-block;
-	transition-property: padding;
-	transition-duration: .35s;
-}
-
-.form_section span
-{
-	font-size: 2em;
-}
-
-.form_section textarea
-{
-    width: 14em;
-	line-height: .5em;
-	font-size: 1.3em;
-	padding-left: 16px;
-	padding-right: 4px;
-	padding-top: 18px;
-	padding-bottom: 9px;
-	resize: none;
-	float: right;
-	border-radius: 4px;
-	white-space: nowrap;
-	overflow: hidden;
-
-}
-
-.form_section img
-{
-	margin-bottom: -2.5em;
-	margin-right: 2em;
-	height: 70px;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-.form_sub .feedback_title
-{
-	margin-left: auto;
-	margin-right: auto;
 }
 
 form button
@@ -240,4 +206,57 @@ form button
 	border: 1px solid #CCC;
 	border-radius: 100px;
 	background: none;
+}
+
+.blinking-cursor {
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
 }
