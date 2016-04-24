@@ -39,4 +39,7 @@ public/lib
 # Static Site stuff
 _site
 
+# config
+.config.json
+
 notes.txt

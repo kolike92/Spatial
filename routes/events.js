@@ -2,6 +2,9 @@ var express     = require('express');
 var router      = express.Router();
 var request     = require('request');
 
+// config
+var config = require('../.config.json');
+
 var mongoose    = require('mongoose');
 
 var EventSchema = require('../models/event')
@@ -9,7 +12,6 @@ var EventSchema = require('../models/event')
 /* API Call */
 function getEvents(location, radius, key) {
     var queryString= 'http://api.eventful.com/json/events/search?...&l='+ location + '&within' + radius + '&app_key=' + key
-    console.log("QUERY: " + queryString);
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             parsedEvents = JSON.parse(body).events.event;
@@ -43,14 +45,13 @@ function getEvents(location, radius, key) {
 }
 
 router.post('/events', function(req, res, next) {
-    getEvents("Boston","100","rssWDw2hGkgX9J66");
+    getEvents("Boston","100",config.api.eventful_key);
 });
 
 /* GET event listing */
 router.get('/events', function(req, res, next) {
     EventSchema.find({}, function(err, results) {
         res.json(results);
-        console.log("render events");
     })
 });
 
