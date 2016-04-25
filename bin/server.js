@@ -1,19 +1,28 @@
 #!/usr/bin/env node
 
 var app = require('../app');
+var fs = require('fs');
 var debug = require('debug')('testapp:server');
-var http = require('http');
+var https = require('https');
+var options = {
+    key: fs.readFileSync('private.key'),
+    cert: fs.readFileSync('certificate.pem')
+};
 
-// port
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
-
-var server = http.createServer(app);
-
+var server = https.createServer(options,app);
 server.listen(port);
 console.log('Listening on port ' + port)
 server.on('error', onError);
 server.on('listening', onListening);
+
+app.all('*', function(req, res, next){
+    if (req.secure) {
+        return next();
+    };
+    res.redirect('https://' + req.hostname + ':' + app.get('port_https') + req.url);
+});
 
 // normalize port value
 function normalizePort(val) {
