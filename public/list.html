@@ -1,0 +1,11 @@
+<div ng-controller="listctl" id="list">
+    <h2>Events near {{place}}</h2><span>({{prettycoords}})</span>
+    <div id="events_wrapper">
+    <div class=event ng-repeat="e in events">
+        <h3>{{e.title}}</h3>
+        <span><strong>Where: </strong>{{e.venue}}, {{e.address}} <br><strong>When: </strong> {{e.start}} <br></span>
+        <span><strong>Description: </strong>{{e.description}}</span>
+        <hr>
+    </div>
+    </div>
+</div>

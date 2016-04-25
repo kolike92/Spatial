@@ -10,6 +10,7 @@ body {
 	font-family: sans-serif;
 	color: #555;
 	min-height: 25em;
+	overflow: hidden;
 }
 
 a {
@@ -80,6 +81,7 @@ h1 {
 	background-color: white;
 	transition-property: margin;
 	transition-duration: .5s;
+	border: 1px solid #EEE;
 }
 
 .side_box
@@ -155,7 +157,7 @@ h1 {
 form
 {
 	position: absolute;
-	font-size: 3.3em;
+	font-size: 2.3em;
 	text-align: center;
 	padding: .8em;
 	min-width: 10em;
@@ -170,6 +172,39 @@ form
 	transition-duration: 3s;
 }
 
+#list
+{
+	padding-top: 5em;
+	background: white;
+}
+
+#list h2
+{
+	text-align: center;
+}
+
+#list span
+{
+	text-align: center;
+	display: block;
+}
+
+#events_wrapper
+{
+	margin: 4em;
+}
+
+#events_wrapper span
+{
+	text-align: left;
+}
+
+.event
+{
+	margin: 2em;
+	padding: 0 2em 0 2em;
+}
+
 #search
 {
 	width: 0;
@@ -180,6 +215,11 @@ form
 {
 	z-index: 10;
 	opacity: 1;
+}
+
+.scroll
+{
+	overflow: scroll;
 }
 
 .temp
@@ -194,18 +234,6 @@ form
     to {
         opacity:1;
     }
-}
-
-form button
-{
-	display: inline-block;
-	float: right;
-	margin-left: 2.5em;
-	margin-top: -6px;
-	padding: 1.5em;
-	border: 1px solid #CCC;
-	border-radius: 100px;
-	background: none;
 }
 
 .blinking-cursor {

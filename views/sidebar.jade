@@ -1,0 +1,13 @@
+div#side_bar(ng-class="{'shownav' : navactive}")
+            div.side_box
+                a(href="" ng-click="navshow(); searchshow()")
+                    img(src="img/search.png" style="width: 28px; opacity: .7;")
+                    span  Search
+            div.side_box
+                a(href="" ng-click="listview(); navshow()")
+                    img(src="img/list.png" style="width: 28px; opacity: .7;")
+                    span List View
+            div.side_box
+                a(href="" ng-click="navshow(); mapview()") 
+                    img(src="img/map.png" style="width: 28px; opaticy: .7;")
+                    span Map View

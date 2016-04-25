@@ -27,6 +27,7 @@ app.use('/bower_components',  express.static(path.join(__dirname + '/bower_compo
 
 // routes
 app.use('/', require('./routes/index'));
+app.use('/list', require('./routes/list'));
 app.use('/events', require('./routes/events'));
 app.use('/geoloc', require('./routes/geoloc'));
 app.use('/users', require('./routes/users'));

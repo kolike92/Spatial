@@ -7,6 +7,7 @@ var EventSchema = require('../models/event')
 
 /* API Call */
 function getEvents(location, radius, key) {
+    consolse.log(location);
     var queryString= 'http://api.eventful.com/json/events/search?...&l='+ location + '&within' + radius + '&app_key=' + key
     request(queryString, function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -41,7 +42,7 @@ function getEvents(location, radius, key) {
 }
 
 router.post('/', function(req, res, next) {
-    getEvents("Boston","100",config.api.eventful_key);
+    getEvents('Boston',"50",config.api.eventful_key);
 });
 
 /* GET event listing */
