@@ -12,8 +12,8 @@
           }
         }
         
-        if (y.length <= 6) {
-          txt = "Password must be longer than 6 characters";
+        if (y.length > 6) {
+          txt = "Password must be less than 10 characters";
           document.getElementById("validResult2").innerHTML = txt;
         }
       }
