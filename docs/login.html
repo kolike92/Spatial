@@ -1,6 +1,26 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <script>
+      function valid() {
+        var x = document.forms["loginForm"]["username"].value;
+        var y = document.forms["loginForm"]["password"].value;
+        for (i = 0, i < x.length, i++) {
+          if (x[i] == '#' || x[i] == '&' || x[i] == '.') {
+            alert("Can't use #, & or . in username");
+            return false;
+          }
+        }
+        
+        if (y.length <= 6) {
+          alert("Password must have more than 6 characters");
+          return false;
+        }
+      }
+    </script>
+  </head>
   <body>
-    <form action="/login" method="post">
+    <form name="loginForm" action="/login" onsubmit="return valid()" method="post">
       <div>
         <label>Username:</label>
         <input type="text" name="username" />
