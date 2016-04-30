@@ -7,14 +7,14 @@
         var y = document.forms["loginForm"]["password"].value;
         for (i = 0, i < x.length, i++) {
           if (x[i] == '#' || x[i] == '&' || x[i] == '.') {
-            alert("Can't use #, & or . in username");
-            return false;
+            txt = "Can't use #, &, . in username";
+          document.getElementById("validResult").innerHTML = txt;
           }
         }
         
         if (y.length <= 6) {
-          alert("Password must have more than 6 characters");
-          return false;
+          txt = "Password must be longer than 6 characters";
+          document.getElementById("validResult2").innerHTML = txt;
         }
       }
     </script>
@@ -32,6 +32,8 @@
       </div>
       <div>
         <input type="submit" value="Submit" />
+        <p id="validResult"></p>
+        <p id="validResult2"></p>
       </div>
     </form>
   </body>
