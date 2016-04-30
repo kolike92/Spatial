@@ -6,6 +6,9 @@ var port        = process.env.PORT || 3000;
 var logger      = require('morgan');
 var bodyParser  = require('body-parser');
 var cookieParser= require('cookie-parser');
+var passport    = require('passport');
+var config      = require('./config/passport');
+
 
 //HELLOOOOOOOOOOOOO
 
@@ -30,11 +33,20 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/public')));
 app.use('/bower_components',  express.static(path.join(__dirname + '/bower_components')));
+app.use(express.session({secrect: 'secret'}));
+app.use(passport.initialize()); //startup up passport
+app.use(passport.session()); //startup session
+
 
 // load in routes
 app.use('/', users);
 app.use('/', events)
 app.use('/', index);
+app.use('/login', login);
+app.use('/signup', signup);
+
+require('./routes/passport')(app, passport);
+
 
 // 404
 app.use(function(req, res, next) {
