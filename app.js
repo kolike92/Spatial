@@ -47,6 +47,12 @@ app.use('/signup', signup);
 
 require('./routes/passport')(app, passport);
 
+//post to process login form
+app.post('/login', passport.authenticate('local-login', {successRedirect: '/index', failureRedirect: '/login'}));
+
+//post to process signup form
+app.post('/signup', passport.authenticate('local-signup', {successRedirect : '/index', failureRedirect : '/signup'}));
+
 
 // 404
 app.use(function(req, res, next) {
