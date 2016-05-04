@@ -5,23 +5,17 @@ html(lang="en")
         link(href="css/main.css", rel="stylesheet")
         link(href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css", rel="stylesheet")
         script(src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js")
-        script(src="../bower_components/angular/angular.js")
-        script(src="../bower_components/angular-route/angular-route.js")
-        script(src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js")
-    body
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js")
+        script(src="../components/spatial.js")
+            
+    body(ng-app="spatial" ng-controller="spatialctl" ng-class="{'scroll' : scroll}")
         header
-            div#logo_wrapper
-                a(href="#")
-                    img#logo(src="favicon.ico")
+            div#menu_wrapper
+                a(href="" ng-click="navshow()")
+                    image#menu(src="img/menu.png" style="height: 22px; margin-left: 2.2em; margin-top: .5em;")
             div#top_bar
                 ul
                     li
                         a(href="#") Sign in
-        div#side_bar
-            div.side_box
-                a(href="#") Filter
-            div.side_box
-                a(href="#") Filter
-            div.side_box
-                a(href="#") Filter
+        include sidebar
         block content

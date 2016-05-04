@@ -1,20 +1,4 @@
 extends layout
-
 block content
-    //- form
-    //-     div.form_sub
-    //-         div.form_section
-    //-             span Where are you?
-    //-             button &#8594;
-    //-             textarea(type="text", placeholder="Buswell St. Boston, MA")
-    div#content()
-    //- div#footer &copy;SpatialApp
-    script(type='text/javascript').
-        mapboxgl.accessToken = "pk.eyJ1IjoiYXNtYWxsZGV2IiwiYSI6ImNpbTVka3hoaTAxbWR1am0zdGZrcjdmdngifQ.YCEnTS1Xao-M8wt-zIJ75A"
-        var map = new mapboxgl.Map({
-            container: 'content',
-            style: 'mapbox://styles/mapbox/streets-v8',
-            center: [-71.10, 42.34],
-            minZoom: 12,
-            zoom: 13
-        });
+    ng-include(src="view" style="overflow: scroll;")
+    include search.jade

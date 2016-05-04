@@ -1,18 +1,14 @@
 // include dependencies
-var express     = require('express');
-var path        = require('path');
-var mongoose    = require('mongoose');
-var port        = process.env.PORT || 3000;
-var logger      = require('morgan');
-var bodyParser  = require('body-parser');
-var cookieParser= require('cookie-parser');
+var express         = require('express');
+var path            = require('path');
+var mongoose        = require('mongoose');
+var port            = process.env.PORT || 3000;
+var logger          = require('morgan');
+var bodyParser      = require('body-parser');
+var cookieParser    = require('cookie-parser');
 
-// define routes
-var index  = require('./routes/index');
-var users  = require('./routes/users');
-var events = require('./routes/events');
-
-var app    = express();
+var app = express();
+var router      = express.Router();
 
 // views & view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -29,10 +25,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/public')));
 app.use('/bower_components',  express.static(path.join(__dirname + '/bower_components')));
 
-// load in routes
-app.use('/', users);
-app.use('/', events)
-app.use('/', index);
+// routes
+app.use('/', require('./routes/index'));
+app.use('/list', require('./routes/list'));
+app.use('/events', require('./routes/events'));
+app.use('/geoloc', require('./routes/geoloc'));
+app.use('/users', require('./routes/users'));
 
 // 404
 app.use(function(req, res, next) {
