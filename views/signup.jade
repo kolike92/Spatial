@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function valid() {
+        var x = document.forms["signupForm"]["username"].value;
+        var y = document.forms["signupForm"]["password"].value;
+        for (i = 0, i < x.length, i++) {
+          if (x[i] == '#' || x[i] == '&' || x[i] == '.') {
+            txt = "Can't user #, &, or . in username";
+            document.getElementById("validResult").innerHTML = txt;
+          }
+        }
+        
+        if (y.length > 6) {
+          txt = "Password must be less than 10 characters";
+          document.getElementById("validResult2").innerHTML = txt;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form name="signupForm" action="/signup" onsubmit="return valid()" method="post">
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username" />
+        <br/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+      </div>
+      <div>
+        <input type="submit" value="Submit" />
+        <p id="validResult"></p>
+        <p id="validResult2"></p>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,3 +1,4 @@
+// include dependencies
 var express     = require('express');
 var path        = require('path');
 var mongoose    = require('mongoose');
@@ -5,13 +6,19 @@ var port        = process.env.PORT || 3000;
 var logger      = require('morgan');
 var bodyParser  = require('body-parser');
 var cookieParser= require('cookie-parser');
-var passport    = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var session     = require('express-session');
-var spatialUser = require('./models/user.js');
 
-var app = express();
-var router      = express.Router();
+//NEEDED FOR PASSPORT.JS
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var spatial-user = require('./models/user.js');
+
+
+// define routes
+var index  = require('./routes/index');
+var users  = require('./routes/users');
+var events = require('./routes/events');
+
+var app    = express();
 
 // views & view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -27,9 +34,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/public')));
 app.use('/bower_components',  express.static(path.join(__dirname + '/bower_components')));
-app.use(express.session({secrect: 'secret'}));
-app.use(passport.initialize()); //startup up passport
-app.use(passport.session()); //startup session
+//NEEDED FOR PASSPORT.JS (initialize passport)
+app.use(express.esssion({secrect: 'secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //for sessions but we are only doing log in and not a session (since we are not doing other requests)
 passport.serializeUser(function(user,done) {
@@ -88,10 +96,21 @@ passport.use('local-signup', new LocalStrategy(
         });
     }));
 
-app.use('/login', login);
-app.use('/signup', signup);
+
+// load in routes
+app.use('/', users);
+app.use('/', events)
+app.use('/', index);
+app.use('/', login);
+app.use('/', signup);
+
+//assuming '/index' is the '/'??
 
 //PASSPORT.JS ROUTES
+app.get('/index', function(req,res) {
+    res.render('index');
+});
+
 app.get('/login', function(req,res) {
     res.render('login');
 });
@@ -111,11 +130,10 @@ app.post('/login', passport.authenticate('local-login', {successRedirect: '/inde
 //post to process signup form
 app.post('/signup', passport.authenticate('local-signup', {successRedirect : '/index', failureRedirect : '/signup'}));
 
-app.use('/', require('./routes/index'));
-app.use('/list', require('./routes/list'));
-app.use('/events', require('./routes/events'));
-app.use('/geoloc', require('./routes/geoloc'));
-app.use('/users', require('./routes/users'));
+
+
+
+
 
 // 404
 app.use(function(req, res, next) {
