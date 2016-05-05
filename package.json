@@ -17,6 +17,6 @@
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "express-session": "~1.0.0",
-    "bcrypt-nodejs": "latest"
+    "bcrypt-nodejs": "0.7.x"
   }
 }
