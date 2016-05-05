@@ -42,4 +42,9 @@ _site
 # config
 .config.json
 
+# keys
+*.pem
+*.key
+*.csr
+
 notes.txt

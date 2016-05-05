@@ -1,0 +1,13 @@
+form(ng-class="{'showsearch' : searchactive}")
+    input#search(ng-model="form" maxlength="26")
+    span I'm looking for 
+    span.temp {{form}}
+    span.blinking-cursor |
+
+    script.
+        //- always focus search
+        var search = document.getElementById('search');
+        search.focus();
+        search.onblur = function () {
+                search.focus();
+        };

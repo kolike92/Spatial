@@ -2,11 +2,7 @@ var express     = require('express');
 var router      = express.Router();
 var request     = require('request');
 
-// config
-var config = require('../.config.json');
-
-var mongoose    = require('mongoose');
-
+var config      = require('../.config.json');
 var EventSchema = require('../models/event')
 
 /* API Call */
@@ -44,12 +40,12 @@ function getEvents(location, radius, key) {
     });
 }
 
-router.post('/events', function(req, res, next) {
+router.post('/', function(req, res, next) {
     getEvents("Boston","100",config.api.eventful_key);
 });
 
 /* GET event listing */
-router.get('/events', function(req, res, next) {
+router.get('/', function(req, res, next) {
     EventSchema.find({}, function(err, results) {
         res.json(results);
     })

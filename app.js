@@ -1,4 +1,3 @@
-// include dependencies
 var express     = require('express');
 var path        = require('path');
 var mongoose    = require('mongoose');
@@ -8,18 +7,11 @@ var bodyParser  = require('body-parser');
 var cookieParser= require('cookie-parser');
 var passport    = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var session     = require('expression-session');
+var session     = require('express-session');
 var spatialUser = require('./models/user.js');
 
-
-//HELLOOOOOOOOOOOOO
-
-// define routes
-var index  = require('./routes/index');
-var users  = require('./routes/users');
-var events = require('./routes/events');
-
-var app    = express();
+var app = express();
+var router      = express.Router();
 
 // views & view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -96,24 +88,10 @@ passport.use('local-signup', new LocalStrategy(
         });
     }));
 
-
-
-
-
-// load in routes
-app.use('/', users);
-app.use('/', events)
-app.use('/', index);
 app.use('/login', login);
 app.use('/signup', signup);
 
-
-
 //PASSPORT.JS ROUTES
-app.get('/index', function(req,res) {
-    res.render('index');
-});
-
 app.get('/login', function(req,res) {
     res.render('login');
 });
@@ -133,6 +111,11 @@ app.post('/login', passport.authenticate('local-login', {successRedirect: '/inde
 //post to process signup form
 app.post('/signup', passport.authenticate('local-signup', {successRedirect : '/index', failureRedirect : '/signup'}));
 
+app.use('/', require('./routes/index'));
+app.use('/list', require('./routes/list'));
+app.use('/events', require('./routes/events'));
+app.use('/geoloc', require('./routes/geoloc'));
+app.use('/users', require('./routes/users'));
 
 // 404
 app.use(function(req, res, next) {
