@@ -1,0 +1,26 @@
+Document  April 24
+Spatial :
+A web application that shows users at-a-glance information about what's around them.
+Group 8: Rollin, Arjun, Li-Ke, and John
+ 
+The flowchart: Merge data of events, business, and the map, then store it in our database. Users can filter the data from out database, choosing business or events, and then display the map with desired information. Users can click “Settings” and directly interact with the database, for example creating an account, or deleting an existing account.
+ 
+Used API
+1.     Eventful : for events, which returns event coordinates, time, and location.
+2.     Factual : for business hours, which provides business hours statically.
+3.     Mapbox : for map display, it has good functionality.
+
+Changes we made: 
+We gave up Yelp API, because it doesn’t allow us to cache or store data, and also, the return format was Boolean, instead of specific open hours.
+ 
+Eventful API will be used as a marker on the map, and the final output of our map will have different colors/layers to indicate different events.
+ 
+We decided we do not need an authentication API from a third party, we used Passport.js, a module in Node.js to authenticate users, and store the users’ info in our own database.
+ 
+For now, user input and user filter is not our priority concern, so we deleted it from our use case list. The precision of the main function, map display with filters, is more crucial at the moment. It will definitely be implemented in future updates, after the website is fully functioned.  
+
+Moving Foward:
+
+Map: Localizing all the data from Factual and then merging that into MapBox data formats to create the map representation would be the next step.   
+
+User: Add filter so when a user logins the events that are displayed on the map are tailored for the customer.
